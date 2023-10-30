@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cmath>
 
@@ -157,10 +156,15 @@ int main()
     glEnableVertexAttribArray(0);
 
     // TODO: set up UV buffer
+    glGenBuffers(1, &UVBO); //generate new buffer object and store the ID
+    glBindBuffer(GL_ARRAY_BUFFER, UVBO); //binding buffer to target 
+    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
+  
+    // UV attribute
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0); //specifications for UV buffer data
+    glEnableVertexAttribArray(1); //enabling attribute to be used in the vertex shader
 
-
-
-
+  
     // Game loop
     while (!glfwWindowShouldClose(window))
     {
@@ -185,7 +189,8 @@ int main()
         );
         glm::mat4 projection;
         // TODO: Set up the project matrix
-
+        //set up project matrix with field of view in radians, and the aspect ratio of the viewing window
+        projection = glm::perspective(glm::radians(45.0f), (GLfloat)WIDTH / HEIGHT, 0.1f, 100.0f); 
 
         // Get the uniform locations
         GLint modelLoc = glGetUniformLocation(textureShader.Program, "model");
@@ -197,6 +202,9 @@ int main()
 
 
         // TODO: bind your texture
+        glActiveTexture(GL_TEXTURE0); //creates the texture object for binding
+        glBindTexture(GL_TEXTURE_2D, texture); //binds the specific loaded texture to the object
+        glUniform1i(textureID, 0); //ensures correct texture object is used for sampling in fragment shader
 
 
         // Draw the container (using container's vertex attributes)
