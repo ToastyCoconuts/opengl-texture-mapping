@@ -17,3 +17,6 @@ Built for COSC 4370 (Computer Graphics) at the University of Houston.
 - `texture.vs` — Vertex shader with UV coordinate adjustment
 - `texture.frag` — Fragment shader for texture sampling
 - `Report.pdf` — Implementation writeup with rendered output
+
+## Output
+[Textured cube](Rendered_Cube.png)
