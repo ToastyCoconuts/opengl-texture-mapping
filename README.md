@@ -19,4 +19,4 @@ Built for COSC 4370 (Computer Graphics) at the University of Houston.
 - `Report.pdf` — Implementation writeup with rendered output
 
 ## Output
-[Textured cube](Rendered_Cube.png)
+![Textured cube](Rendered_Cube.png)
